@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "slug": "industrial",
+      "title": "Промышленные объекты",
+      "cover": "https://placehold.co/1400x600?text=Industrial",
+      "description": "Разработка проектов производственных зданий и сооружений."
+    },
+    {
+      "id": 2,
+      "slug": "public-spaces",
+      "title": "Общественные пространства",
+      "cover": "https://placehold.co/1400x600?text=Public+Spaces",
+      "description": "Городские пространства, культурные и образовательные объекты."
+    },
+    {
+      "id": 3,
+      "slug": "interiors",
+      "title": "Дизайн интерьеров",
+      "cover": "https://placehold.co/1400x600?text=Interiors",
+      "description": "Интерьеры офисов, коммерческих и жилых помещений."
+    }
+  ],
+  "total": 3
+}
