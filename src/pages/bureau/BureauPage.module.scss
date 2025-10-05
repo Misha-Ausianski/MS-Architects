@@ -1,0 +1,59 @@
+.hero {
+  width: 100%;
+  height: auto; 
+  margin-bottom: 60px;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.p {
+  margin: 0;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.55;
+  color: #1a1a1a;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* h2 по контенту, форма занимает остаток */
+  align-items: start;
+  gap: 40px;
+}
+
+.formWrap {
+  min-width: 0; /* чтобы контент формы мог ужиматься и не выталкивал лэйаут */
+}
+
+.formWrap[data-hide-tf-head] > * > :first-child {
+  display: none !important;
+}
+
+/* планшет/мобилка */
+@media (max-width: 1024px) {
+  .introGrid { gap: 12px 16px; }
+}
+
+@media (max-width: 768px) {
+  .introGrid { grid-template-columns: 1fr; }
+  .formWrap { margin-left: 0; max-width: 100%; }
+  .formRow {display:flex; flex-direction: column; gap: 28px;}
+  .h2 {margin: 0;}
+}

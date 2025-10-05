@@ -1,0 +1,28 @@
+
+
+.h1 {
+  margin: 0;
+}
+
+.content { 
+  margin-top: 36px; 
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
+.content h2,
+.content h3 { margin: 36px 0 16px; font-size: 20px;line-height: 1.25; letter-spacing: -0.01em;}
+
+.content h2:first-child,
+.content h3:first-child { margin-top: 0; }
+
+.content p { margin: 0; font-size: 14px; font-weight: 400;}
+.content p + p { margin-top: 12px; }
+
+.h2 { margin: 36px 0 16px; font-size: 20px; line-height: 1.25; }
+
+/* Мобилка */
+@media (max-width: 768px) {
+  .article { padding: 0 16px 80px 16px; }
+}

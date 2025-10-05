@@ -1,0 +1,12 @@
+.lead {
+  max-width: 900px;
+}
+
+.desc :where(p, ul, ol) { margin: 0 0 14px; line-height: 1.65; }
+.desc ul { padding-left: 20px; list-style: disc; }
+.desc ol { padding-left: 20px; list-style: decimal; }
+.desc img { max-width: 100%; height: auto; border-radius: 4px; }
+
+@media (max-width: 768px) {
+  .lead { max-width: 100%; }
+}

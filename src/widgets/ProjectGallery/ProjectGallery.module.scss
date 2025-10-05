@@ -1,0 +1,81 @@
+
+.gallery {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;     
+}
+
+
+:global(main), :global(#root), :global(.page) { min-width: 0; }
+
+
+:global(.swiper) { width: 100%; height: auto; min-width: 0; overflow: hidden; }
+:global(.swiper-wrapper) { height: auto; }
+:global(.swiper-slide) {
+  flex: 0 0 100%;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+
+
+.slide {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  text-align: left;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(90vh, 1200px);
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.pagination {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 20px !important;
+  transform: translateX(-50%) !important; 
+  width: auto !important;
+  right: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  z-index: 3;
+}
+
+.bullet {
+  position: relative;
+  width: 60px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255,255,255,.25);
+  opacity: .85;
+  overflow: hidden;
+  transition: width .2s ease, transform .2s ease, opacity .2s ease;
+}
+:global(.swiper-pagination-bullet-active).bullet,
+.bullet:global(.swiper-pagination-bullet-active) {
+  width: 100px;
+  opacity: 1;
+}
+
+.progress {
+  position: absolute; inset: 0 auto 0 0;
+  width: var(--p, 0%);
+  background: #fff;
+  border-radius: inherit;
+  transition: width .12s linear;
+}
+
+/* адаптив */
+@media (max-width: 640px) {
+  .bullet { width: 40px; height: 5px; }
+}

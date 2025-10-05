@@ -1,0 +1,147 @@
+//.layout {
+//  display: grid;
+//  grid-template-columns: 260px 1fr;
+//  min-height: 100vh;
+//}
+//
+//.main {
+//  position: relative;
+//}
+//
+//.burger {
+//  position: fixed;
+//  top: 16px;
+//  right: 16px;
+//  width: 36px;
+//  height: 28px;
+//  display: none;
+//  z-index: 50;
+//  background: transparent;
+//  border: 0;
+//  padding: 0;
+//}
+//
+//.burger span {
+//  display: block;
+//  height: 3px;
+//  background: #111;
+//  margin: 6px 0;
+//  border-radius: 2px
+//}
+//
+//@media (max-width: 1024px) {
+//  .layout {
+//    grid-template-columns: 1fr;
+//  }
+//  .burger {
+//    display: inline-block;
+//  }
+//}
+
+:root {
+  --sidebar-w: 238px;
+  --header-h: 68px;
+}
+
+.layout {
+  min-height: 100dvh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  align-items: stretch;
+  min-height: 100dvh;
+}
+
+.main {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  padding: 6px 6px 6px 28px;
+}
+
+.header {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  padding: 10px 12px;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogoWrap { 
+  display: inline-flex; 
+  align-items: center; 
+  line-height: 0; 
+}
+
+.headerLogo {
+  display: block;
+  max-height: 44px;
+  width: auto;
+  overflow: visible;
+}
+
+.iconBtn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  background: #f2f2f2;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0; 
+}
+
+.icon,
+.icon::before,
+.icon::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: #111;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.icon { top: 50%; transform: translateY(-50%); }
+.icon::before { top: -7px; }
+.icon::after  { top:  7px; }
+
+.isOpen .icon { opacity: 0; }
+.isOpen .icon::before { transform: translateY(7px) rotate(45deg); opacity: 1; }
+.isOpen .icon::after  { transform: translateY(-7px) rotate(-45deg); opacity: 1; }
+
+
+
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; }
+  .header { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    padding: 0 4px 4px 4px;
+  }
+
+  .header {
+    display: flex;
+    padding: 10px 12px;
+  }
+}

@@ -1,0 +1,104 @@
+.footer {
+  padding: 48px;
+  border-radius: 4px;
+  border-left: 1px solid #999;
+  background-color: #222;
+}
+
+.info {
+  display: flex;
+  margin-bottom: 88px;
+  gap: 20px;
+}
+
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 429px;
+}
+
+.number {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: 0.24px;
+}
+
+.email {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: 0.24px;
+}
+
+.address {
+  color: #999;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.16px;
+}
+
+.navs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 314px;
+}
+
+.nav {
+  a {
+    display: block;
+    padding: 12px 0;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.14px;
+  }
+}
+
+.docs {
+  a {
+    display: block;
+    padding: 12px 0;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: -0.14px;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.14px;
+}
+
+@media (max-width: 880px) {
+  .footer {
+    padding: 24px 16px;
+  }
+
+  .info {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}

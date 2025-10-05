@@ -1,0 +1,28 @@
+.meta {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.term {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+  opacity: .6;
+}
+
+.def {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+}

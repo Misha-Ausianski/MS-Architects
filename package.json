@@ -1,0 +1,48 @@
+{
+  "name": "MS-Architects",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest --environment jsdom",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "format": "prettier -w ."
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
+    "gsap": "^3.13.0",
+    "ky": "^1.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.63.0",
+    "react-router-dom": "^6.27.0",
+    "swiper": "^12.0.2",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.2",
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "^22.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6",
+    "vite-plugin-svgr": "^4.2.0",
+    "vitest": "^2.1.1"
+  },
+  "browserslist": [
+    ">=0.5%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
