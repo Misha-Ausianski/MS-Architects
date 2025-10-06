@@ -1,15 +1,12 @@
 /* widgets/AdvantagesGrid/AdvantagesGrid.module.scss */
 .container {
-  padding: 0 48px 0 0;
   margin-bottom: 60px;
 }
-
-
 
 .grid {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: auto auto; 
+  grid-template-rows: auto auto;
   gap: 10px;
 }
 
@@ -54,11 +51,11 @@
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto; 
+    grid-template-rows: auto;
     gap: 10px;
   }
 
-  
+
   .grid > .card {
     grid-column: auto !important;
     grid-row: auto !important;

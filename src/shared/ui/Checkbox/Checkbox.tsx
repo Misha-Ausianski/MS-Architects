@@ -1,5 +1,12 @@
-import { ComponentProps } from 'react';
+import React, { forwardRef } from 'react';
 import cls from './Checkbox.module.scss';
-export default function Checkbox(props: ComponentProps<'input'>) {
-  return <input type="checkbox" className={cls.checkbox} {...props} />;
-}
+
+type Props = React.ComponentPropsWithoutRef<'input'>;
+
+const Checkbox = forwardRef<HTMLInputElement, Props>(function Checkbox(
+  { className, ...rest }, ref
+) {
+  return <input ref={ref} type="checkbox" className={`${cls.checkbox} ${className ?? ''}`} {...rest} />;
+});
+
+export default Checkbox;

@@ -51,13 +51,16 @@ button {
 }
 
 .container {
-  padding: 0 48px 0 0;
   margin-bottom: 60px;
+}
+
+.section {
+  max-width: 1200px;
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 16px; 
+    padding: 0 16px;
     margin-bottom: 36px;
   }
 }

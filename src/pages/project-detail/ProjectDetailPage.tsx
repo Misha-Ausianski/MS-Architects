@@ -14,29 +14,27 @@ export default function ProjectDetailPage() {
   return (
     <>
       <Breadcrumbs />
-
       <ProjectGallery images={p.gallery} />
+      <div className="container">
+        <div className="section">
+          <h1 className={s.title}>{p.title}</h1>
 
-      <div className="container">     
-
-        <h1 className={s.title}>{p.title}</h1>
-
-        <div className={s.row}>
-          <aside className={s.metaCol}>
-            <ProjectMeta project={p} />
-          </aside>
-
-          <article className={s.content}>
-            {p.content
-              ? <div dangerouslySetInnerHTML={{ __html: p.content }} />
-              : <p>{p.excerpt}</p>}
-          </article>
-
+          <div className={s.row}>
+            <aside className={s.metaCol}>
+              <ProjectMeta project={p} />
+            </aside>
+            <article className={s.content}>
+              {p.content ? (
+                <div dangerouslySetInnerHTML={{ __html: p.content }} />
+              ) : (
+                <p>{p.excerpt}</p>
+              )}
+            </article>
+          </div>
         </div>
-        
       </div>
 
-      <RelatedProjects category={p.category} currentSlug={p.slug} />
+      <RelatedProjects serviceSlug={p.serviceSlug} currentSlug={p.slug} limit={3} />
     </>
   );
 }

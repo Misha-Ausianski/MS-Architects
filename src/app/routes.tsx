@@ -16,19 +16,24 @@ const withSuspense = (el: JSX.Element) => (
   <Suspense fallback={<div className="skeleton-page" />}>{el}</Suspense>
 );
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      element: <MainLayout />,
+      children: [
+        { path: '/', element: withSuspense(<Home />) },
+        { path: '/bureau', element: withSuspense(<Bureau />) },
+        { path: '/projects', element: withSuspense(<Projects />) },
+        { path: '/projects/:slug', element: withSuspense(<ProjectDetail />) },
+        { path: '/services', element: withSuspense(<Services />) },
+        { path: '/services/:slug', element: withSuspense(<ServiceDetail />) },
+        { path: '/contacts', element: withSuspense(<Contacts />) },
+        { path: '/privacy', element: withSuspense(<Privacy />) },
+        { path: '*', element: withSuspense(<NotFound />) },
+      ],
+    },
+  ],
   {
-    element: <MainLayout />,
-    children: [
-      { path: '/', element: withSuspense(<Home />) },
-      { path: '/bureau', element: withSuspense(<Bureau />) },
-      { path: '/projects', element: withSuspense(<Projects />) },
-      { path: '/projects/:slug', element: withSuspense(<ProjectDetail />) },
-      { path: '/services', element: withSuspense(<Services />) },
-      { path: '/services/:slug', element: withSuspense(<ServiceDetail />) },
-      { path: '/contacts', element: withSuspense(<Contacts />) },
-      { path: '/privacy', element: withSuspense(<Privacy />) },
-      { path: '*', element: withSuspense(<NotFound />) },
-    ],
-  },
-]);
+    basename: import.meta.env.BASE_URL,
+  }
+);

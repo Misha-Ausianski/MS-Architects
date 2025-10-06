@@ -5,6 +5,7 @@ import path from 'node:path';
 
 export default defineConfig({
   plugins: [react(), svgr()],
+  base: '/MS-Architects/',
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),

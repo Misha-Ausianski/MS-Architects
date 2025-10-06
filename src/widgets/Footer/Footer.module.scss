@@ -9,6 +9,7 @@
   display: flex;
   margin-bottom: 88px;
   gap: 20px;
+  justify-content: space-between;
 }
 
 .columnLeft {
@@ -64,6 +65,9 @@
 }
 
 .docs {
+  width: 100%;
+  max-width: 314px;
+
   a {
     display: block;
     padding: 12px 0;
@@ -78,11 +82,29 @@
 .bottom {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+
   color: #999;
   font-size: 14px;
   font-weight: 500;
   line-height: 140%;
   letter-spacing: -0.14px;
+
+  > * {
+    width: 100%;
+  }
+
+  > *:nth-child(1) {
+    max-width: 429px;
+  }
+
+  > *:nth-child(2) {
+    max-width: 314px;
+  }
+
+  > *:nth-child(3) {
+    max-width: 314px;
+  }
 }
 
 @media (max-width: 880px) {

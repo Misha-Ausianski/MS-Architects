@@ -2,17 +2,23 @@ import { useProjects } from '@entities/project/api/queries';
 import { ProjectCard } from '@entities/project/ui/ProjectCard';
 import s from './RelatedProjects.module.scss';
 
-export function RelatedProjects({ category, currentSlug }: { category?: string; currentSlug?: string }) {
+type Props = {
+  serviceSlug: string;
+  currentSlug?: string;
+  limit?: number;
+};
+
+export function RelatedProjects({ serviceSlug, currentSlug, limit = 3 }: Props) {
   const { data } = useProjects({});
-  const items = (data?.items || [])
-    .filter(p => (category ? p.category === category : true))
+  const items = (data?.items ?? [])
+    .filter(p => p.serviceSlug === serviceSlug)
     .filter(p => p.slug !== currentSlug)
-    .slice(0, 9); // запас по строкам
+    .slice(0, limit);
 
   if (items.length === 0) return null;
 
   return (
-    <section className="section" data-bitrix-block="RELATED_PROJECTS">
+    <section data-bitrix-block="RELATED_PROJECTS">
       <div className="container">
         <h2>Другие проекты этой категории</h2>
         <div className={s.grid}>

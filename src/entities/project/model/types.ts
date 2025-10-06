@@ -3,6 +3,7 @@ export type Project = {
   slug: string;
   title: string;
   category: string;
+  serviceSlug: string;
   city?: string;
   year?: number;
   area_m2?: number;
@@ -12,4 +13,3 @@ export type Project = {
   content?: string;
   featured?: boolean;
 };
-export type ProjectList = { items: Project[]; total: number };
