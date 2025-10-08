@@ -125,7 +125,7 @@ export default function BureauPage() {
       <section className="section">
         <div className="container">
           <div className={styles.formRow}>
-            <h2 className={styles.h2}>Хотите у нас работать?</h2>
+            <h2 className={styles.subtitle}>Хотите у нас работать?</h2>
             <div className={styles.formWrap} data-hide-tf-head>
               <TabbedForm />
             </div>
