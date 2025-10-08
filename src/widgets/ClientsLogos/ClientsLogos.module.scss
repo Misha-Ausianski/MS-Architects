@@ -1,3 +1,13 @@
+.title {
+  margin-bottom: 40px;
+  color: #111;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.36px;
+}
+
 .container {
   padding: 0 48px 0 0;
   margin-bottom: 60px;
@@ -5,7 +15,7 @@
 
 .wrap {
   display: grid;
-  gap: 30px;
+  gap: 28px;
 }
 
 .row {
@@ -16,7 +26,6 @@
 
 .marquee {
   --gap: 16px;
-  --h: 60px;
   display: flex;
   gap: var(--gap);
   user-select: none;
@@ -26,17 +35,22 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-around;
   min-width: 100%;
   gap: var(--gap);
   will-change: transform;
   animation: scroll var(--duration, 30s) linear infinite;
-  transform: translate3d(0,0,0); 
+  transform: translate3d(0, 0, 0);
 }
 
 /* направление */
-.left  .content { animation-name: scroll-left; }
-.right .content { animation-name: scroll-right; }
+.left .content {
+  animation-name: scroll-left;
+}
+
+.right .content {
+  animation-name: scroll-right;
+}
 
 /* элемент */
 .item {
@@ -45,7 +59,10 @@
   height: var(--h);
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-height: 96px;
 }
+
 .item img {
   display: block;
   height: 100%;
@@ -54,25 +71,48 @@
   opacity: 0.9;
 }
 
-.mobileOnly { display: none; }
+.mobileOnly {
+  display: none;
+}
 
 @media (max-width: 768px) {
-  .container {padding: 0;margin-bottom: 36px;}
-  .wrap { gap: 4px; }
-  .marquee { --h: 44px; }
-  .mobileOnly { display: block; }
+  .container {
+    padding: 0;
+    margin-bottom: 36px;
+  }
+  .wrap {
+    gap: 4px;
+  }
+  .marquee {
+    --h: 44px;
+  }
+  .mobileOnly {
+    display: block;
+  }
 }
 
 @keyframes scroll-left {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(calc(-100% - var(--gap)), 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-100% - var(--gap)), 0, 0);
+  }
 }
+
 @keyframes scroll-right {
-  from { transform: translate3d(calc(-100% - var(--gap)), 0, 0); }
-  to   { transform: translate3d(0, 0, 0); }
+  from {
+    transform: translate3d(calc(-100% - var(--gap)), 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /* уважаем reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .content { animation: none; transform: none; }
+  .content {
+    animation: none;
+    transform: none;
+  }
 }

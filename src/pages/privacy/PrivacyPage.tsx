@@ -8,32 +8,30 @@ export default function PrivacyPage() {
 
   return (
     <>
-    <div className="container">
-      <Breadcrumbs />
+      <div className="container">
+        <Breadcrumbs />
 
-      {isLoading ? (
-        <div className="skeleton-page" />
-      ) : (
-        <article className={styles.article}>
-          <h1 className={styles.h1}>
-            {data?.title ?? 'Политика в отношении обработки персональных данных'}
-          </h1>
+        {isLoading ? (
+          <div className="skeleton-page" />
+        ) : (
+          <article className={styles.article}>
+            <h1 className={styles.h1}>
+              {data?.title ?? 'Политика в отношении обработки персональных данных'}
+            </h1>
 
-          <div
-            className={styles.content}
-            // при необходимости можно пропустить через DOMPurify
-            dangerouslySetInnerHTML={{ __html: data?.content ?? '' }}
-          />
+            <div
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: data?.content ?? '' }}
+            />
 
-          {data?.downloads?.length ? (
-            <>
-              <h2 className={styles.h2}>Загрузки</h2>
-              <DownloadsList items={data.downloads as Array<{ title: string; url: string; meta?: string }>} />
-            </>
-          ) : null}
-        </article>      
-      )}
-    </div>
+            {data?.downloads?.length ? (
+              <DownloadsList
+                items={data.downloads as Array<{ title: string; url: string; meta?: string }>}
+              />
+            ) : null}
+          </article>
+        )}
+      </div>
     </>
   );
 }

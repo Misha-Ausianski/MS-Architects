@@ -14,14 +14,13 @@ export default function TabbedForm({ variant = 'default' }: { variant?: Variant 
     { value: 'cooperate', label: 'Обсудить сотрудничество' },
   ];
 
-
-    return (
-      <div className={styles.embed} data-bitrix-block="FORM">
-        <div className={styles.head}>Мне нужно:</div>
-        <Tabs items={items} value={tab} onChange={v => setTab(v as any)} />
-        <div className={styles.card}>
-          <ContactForm type={tab} />
-        </div>
+  return (
+    <div className={styles.embed} data-bitrix-block="FORM">
+      <div className={styles.head}>Мне нужно:</div>
+      <Tabs items={items} value={tab} onChange={(v) => setTab(v as any)} />
+      <div className={styles.card}>
+        <ContactForm type={tab} />
       </div>
-    );
+    </div>
+  );
 }

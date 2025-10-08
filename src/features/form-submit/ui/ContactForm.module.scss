@@ -1,41 +1,38 @@
-
-.form {}
-
 .stack {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .label {
-  font-size: 14px;
-  line-height: 1.2;
-  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.16px;
 }
 
 .control {
+  color: #B8B8B8;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.16px;
   width: 100%;
-  font-size: 14px;
-  line-height: 1.2;
-  padding: 16px;
+  padding: 0 16px;
   border: 1px solid #EBEBEB;
   border-radius: 3px;
   background: #fff;
-}
+  height: 54px;
 
-.textarea {
-  min-height: 96px;
-  resize: vertical;
-}
-
-.control::placeholder {
-  color: #BDBDBD;
+  &::placeholder {
+    color: #BDBDBD;
+  }
 }
 
 .file {
@@ -45,17 +42,42 @@
 .consent {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin: 12px 0;
+  gap: 12px;
+  margin: 28px 0;
+  color: #222;
   font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .submit {
   width: 100%;
-  height: 48px;
-  border-radius: 3px;
-  background: #222;
+  height: 55px;
   color: #fff;
+  border-radius: 2px;
+  background-color: #222;
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.16px;
 }
 
-.ok { color: green; margin-top: 8px; }
+.ok {
+  color: green;
+  margin-top: 8px;
+}

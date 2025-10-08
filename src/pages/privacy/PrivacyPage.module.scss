@@ -1,28 +1,62 @@
-
+.article {
+  max-width: 670px;
+  margin: 0 auto;
+}
 
 .h1 {
   margin: 0;
+  color: #111;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.36px;
 }
 
-.content { 
-  margin-top: 36px; 
+.content {
+  margin-top: 36px;
   overflow-wrap: anywhere;
   word-break: normal;
   hyphens: auto;
 }
 
-.content h2,
-.content h3 { margin: 36px 0 16px; font-size: 20px;line-height: 1.25; letter-spacing: -0.01em;}
+.content h2 {
+  margin: 0 0 16px;
+  color: #222;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.content h3 {
+  margin: 32px 0 16px;
+  color: #222;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
 
 .content h2:first-child,
-.content h3:first-child { margin-top: 0; }
+.content h3:first-child {
+  margin-top: 0;
+}
 
-.content p { margin: 0; font-size: 14px; font-weight: 400;}
-.content p + p { margin-top: 12px; }
+.content p {
+  color: #555;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.14px;
+}
 
-.h2 { margin: 36px 0 16px; font-size: 20px; line-height: 1.25; }
+.content p + p {
+  margin-top: 8px;
+}
 
 /* Мобилка */
 @media (max-width: 768px) {
-  .article { padding: 0 16px 80px 16px; }
+  .article {
+    padding: 0 16px 80px 16px;
+  }
 }

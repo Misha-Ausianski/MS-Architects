@@ -1,21 +1,38 @@
 .hero {
   width: 100%;
-  height: auto; 
+  max-height: calc(100vh - 90px);;
   margin-bottom: 60px;
 }
 
 .heroImg {
   display: block;
   width: 100%;
-  height: auto;
   object-fit: cover;
+  max-height: calc(100vh - 90px);;
 }
 
+.title {
+  margin-bottom: 36px;
+  color: #222;
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.6px;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  color: #111;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.36px;
+}
 
 .introGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 24px;
+  gap: 12px 28px;
 }
 
 .col {
@@ -26,34 +43,103 @@
 
 .p {
   margin: 0;
-  font-size: clamp(14px, 1.8vw, 16px);
-  line-height: 1.55;
-  color: #1a1a1a;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.14px;
 }
 
 .formRow {
   display: grid;
-  grid-template-columns: max-content 1fr; /* h2 по контенту, форма занимает остаток */
+  grid-template-columns: max-content 1fr;
   align-items: start;
   gap: 40px;
 }
 
 .formWrap {
-  min-width: 0; /* чтобы контент формы мог ужиматься и не выталкивал лэйаут */
+  min-width: 0;
+}
+
+.advantages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.firstRow, .secondRow {
+  display: flex;
+  gap: 10px;
+  justify-content: stretch;
+}
+
+.firstRow {
+  justify-content: flex-start;
+
+  .card {
+    min-height: 172px;
+  }
+}
+
+.secondRow {
+  justify-content: flex-end;
+
+  .card {
+    min-height: 182px;
+  }
+}
+
+.card {
+  padding: 16px;
+  border-radius: 4px;
+  background: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 316px;
+}
+
+.cardTitle {
+  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.16px;
+}
+
+.cardText {
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.14px;
 }
 
 .formWrap[data-hide-tf-head] > * > :first-child {
   display: none !important;
 }
 
-/* планшет/мобилка */
 @media (max-width: 1024px) {
-  .introGrid { gap: 12px 16px; }
+  .introGrid {
+    gap: 12px 16px;
+  }
 }
 
 @media (max-width: 768px) {
-  .introGrid { grid-template-columns: 1fr; }
-  .formWrap { margin-left: 0; max-width: 100%; }
-  .formRow {display:flex; flex-direction: column; gap: 28px;}
-  .h2 {margin: 0;}
+  .introGrid {
+    grid-template-columns: 1fr;
+  }
+  .formWrap {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .h2 {
+    margin: 0;
+  }
 }

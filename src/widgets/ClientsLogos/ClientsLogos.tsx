@@ -10,7 +10,9 @@ export default function ClientsLogos({ logos }: Props) {
   return (
     <section className="section" data-bitrix-block="CLIENTS">
       <div className="container">
-        <h2 className={styles.h2}>Наши клиенты</h2>
+        <h2 className={styles.title}>
+          Наши клиенты
+        </h2>
 
         <div className={styles.wrap}>
           {rows.map((r) => (

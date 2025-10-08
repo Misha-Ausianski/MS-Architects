@@ -4,7 +4,8 @@ import Textarea from '@shared/ui/Textarea/Textarea';
 import Checkbox from '@shared/ui/Checkbox/Checkbox';
 import Button from '@shared/ui/Button/Button';
 import { useSubmitForm } from '../model/useSubmitForm';
-import cls from './ContactForm.module.scss';
+import style from './ContactForm.module.scss';
+import { NavLink } from 'react-router-dom';
 
 type FormData = {
   name: string;
@@ -13,62 +14,82 @@ type FormData = {
   message?: string;
   file?: FileList;
   consent: boolean;
+  resume?: string;
 };
 
-export function ContactForm({ type }: { type: 'callback'|'resume'|'cooperate' }) {
-  const { register, handleSubmit, formState: { isSubmitting, isSubmitSuccessful }, reset } =
-    useForm<FormData>({ defaultValues: { consent: false } });
+export function ContactForm({ type }: { type: 'callback' | 'resume' | 'cooperate' }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, isSubmitSuccessful },
+    reset,
+  } = useForm<FormData>({ defaultValues: { consent: false } });
   const { mutateAsync } = useSubmitForm(type);
 
-  const showExtra = type !== 'callback';
-  const showFile  = type === 'resume';
+  const showCooperate = type === 'cooperate';
+  const showFile = type === 'resume';
 
   return (
     <form
-      className={cls.form}
-      onSubmit={handleSubmit(async (data) => { await mutateAsync(data); reset(); })}
+      className={style.form}
+      onSubmit={handleSubmit(async (data) => {
+        await mutateAsync(data);
+        reset();
+      })}
     >
-      <div className={cls.stack}>
-        <div className={cls.field}>
-          <label className={cls.label}>Имя</label>
-          <Input className={cls.control} placeholder="Alexander" {...register('name', { required: true })} />
+      <div className={style.stack}>
+        <div className={style.field}>
+          <label className={style.label}>Имя</label>
+          <Input
+            className={style.control}
+            placeholder="Alexander"
+            {...register('name', { required: true })}
+          />
         </div>
 
-        <div className={cls.field}>
-          <label className={cls.label}>Номер телефона</label>
-          <Input className={cls.control} placeholder="+7 (999) 000-0000" {...register('phone', { required: true })} />
+        <div className={style.field}>
+          <label className={style.label}>Номер телефона</label>
+          <Input
+            className={style.control}
+            placeholder="+7 (999) 000-0000"
+            {...register('phone', { required: true })}
+          />
         </div>
-
-        {showExtra && (
-          <div className={cls.field}>
-            <label className={cls.label}>Email</label>
-            <Input className={cls.control} placeholder="example@mail.ru" {...register('email')} />
-          </div>
-        )}
-
-        {showExtra && (
-          <div className={cls.field}>
-            <label className={cls.label}>Сообщение</label>
-            <Textarea className={`${cls.control} ${cls.textarea}`} placeholder="Коротко опишите запрос" {...register('message')} />
-          </div>
-        )}
 
         {showFile && (
-          <div className={cls.field}>
-            <label className={cls.label}>Резюме (файл)</label>
-            <input className={`${cls.control} ${cls.file}`} type="file" {...register('file')} />
+          <div className={style.field}>
+            <label className={style.label}>Ссылка на портфолио</label>
+            <Input
+              className={style.control}
+              placeholder="https://msarchitects.ru/"
+              {...register('resume', { required: true })}
+            />
+          </div>
+        )}
+
+        {showCooperate && (
+          <div className={style.field}>
+            <label className={style.label}>Сообщение</label>
+            <Textarea
+              placeholder="Коротко опишите запрос"
+              {...register('message')}
+            />
           </div>
         )}
       </div>
 
-      <label className={cls.consent}>
+      <label className={style.consent}>
         <Checkbox {...register('consent', { required: true })} />
-        <span>Я соглашаюсь с политикой конфиденциальности</span>
+        <span>
+          Я соглашаюсь с <NavLink to="/privacy">политикой конфиденциальности</NavLink>
+        </span>
       </label>
 
-      <Button className={cls.submit} disabled={isSubmitting}>Оставить заявку</Button>
+      <Button className={style.submit} disabled={isSubmitting}>
+        Оставить заявку
+      </Button>
 
-      {isSubmitSuccessful && <div className={cls.ok}>Заявка отправлена</div>}
+      {isSubmitSuccessful && <div className={style.ok}>Заявка отправлена</div>}
     </form>
   );
 }

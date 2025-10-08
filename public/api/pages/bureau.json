@@ -1,0 +1,24 @@
+{
+  "downloads": [
+    {
+      "title": "Загрузить Проект",
+      "url": "/api/files/sample-1.pdf",
+      "size": "3"
+    },
+    {
+      "title": "Загрузить Проект",
+      "url": "/api/files/sample-2.pdf",
+      "size": "2"
+    },
+    {
+      "title": "Загрузить Проект",
+      "url": "/api/files/sample-3.pdf",
+      "size": "1"
+    },
+    {
+      "title": "Загрузить Проект",
+      "url": "/api/files/sample-4.pdf",
+      "size": "5"
+    }
+  ]
+}

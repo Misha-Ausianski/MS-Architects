@@ -21,11 +21,11 @@ export const router = createBrowserRouter(
     {
       element: <MainLayout />,
       children: [
-        { path: '/', element: withSuspense(<Home />) },
+        { path: '/', element: withSuspense(<Home />), handle: { hideFooter: true } },
         { path: '/bureau', element: withSuspense(<Bureau />) },
         { path: '/projects', element: withSuspense(<Projects />) },
         { path: '/projects/:slug', element: withSuspense(<ProjectDetail />) },
-        { path: '/services', element: withSuspense(<Services />) },
+        { path: '/services', element: withSuspense(<Services />), handle: { hideFooter: true } },
         { path: '/services/:slug', element: withSuspense(<ServiceDetail />) },
         { path: '/contacts', element: withSuspense(<Contacts />) },
         { path: '/privacy', element: withSuspense(<Privacy />) },

@@ -1,2 +1,14 @@
-/* TODO: стили текстового поля */
-.textarea{}
+.textarea{
+  min-height: 87px;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -0.16px;
+  color: #222;
+  padding: 16px;
+  border: 1px solid #EBEBEB;
+  resize: none;
+
+  &::placeholder {
+    color: #B8B8B8;
+  }
+}

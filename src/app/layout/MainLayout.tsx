@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useMatches } from 'react-router-dom';
 import Sidebar from '@widgets/Sidebar/Sidebar';
 import Footer from '@widgets/Footer/Footer';
 import Offcanvas from '@features/offcanvas-menu/ui/Offcanvas';
@@ -10,6 +10,9 @@ import styles from './MainLayout.module.scss';
 
 export default function MainLayout() {
   const { isOpen, toggle } = useOffcanvas();
+  const matches = useMatches();
+
+  const hideFooter = matches.some((m) => m.handle?.hideFooter);
 
   return (
     <div className={styles.layout}>
@@ -36,7 +39,7 @@ export default function MainLayout() {
 
           <div className={styles.content}>
             <Outlet />
-            <Footer />
+            {!hideFooter && <Footer />}
           </div>
         </main>
 

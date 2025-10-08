@@ -64,7 +64,6 @@ export default function ServiceDetailPage() {
           </div>
         </div>
 
-        {/* общий блок преимуществ */}
         <div className={style.benefits}>
           <h3 className={style.benefitsTitle}>
             Почему многие крупные компании доверили проектирование зданий нам:
