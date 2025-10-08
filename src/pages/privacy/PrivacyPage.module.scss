@@ -17,6 +17,12 @@
   overflow-wrap: anywhere;
   word-break: normal;
   hyphens: auto;
+
+  div {
+    &:not(:last-child) {
+      margin-bottom: 36px;
+    }
+  }
 }
 
 .content h2 {
