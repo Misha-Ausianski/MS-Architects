@@ -18,20 +18,24 @@
 }
 
 .control {
-  color: #B8B8B8;
+  color: #222;
   font-size: 16px;
   font-weight: 500;
   line-height: 140%;
   letter-spacing: -0.16px;
   width: 100%;
   padding: 0 16px;
-  border: 1px solid #EBEBEB;
+  border: none;
   border-radius: 3px;
   background: #fff;
   height: 54px;
 
+  &:focus {
+    outline: none;
+  }
+
   &::placeholder {
-    color: #BDBDBD;
+    color: #B8B8B8;
   }
 }
 

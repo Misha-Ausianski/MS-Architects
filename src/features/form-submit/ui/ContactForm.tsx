@@ -26,6 +26,7 @@ export function ContactForm({ type }: { type: 'callback' | 'resume' | 'cooperate
   } = useForm<FormData>({ defaultValues: { consent: false } });
   const { mutateAsync } = useSubmitForm(type);
 
+  const showCallback = type === 'callback';
   const showCooperate = type === 'cooperate';
   const showFile = type === 'resume';
 
@@ -42,38 +43,53 @@ export function ContactForm({ type }: { type: 'callback' | 'resume' | 'cooperate
           <label className={style.label}>Имя</label>
           <Input
             className={style.control}
-            placeholder="Alexander"
+            placeholder="Иван Петров"
             {...register('name', { required: true })}
           />
         </div>
 
-        <div className={style.field}>
-          <label className={style.label}>Номер телефона</label>
-          <Input
-            className={style.control}
-            placeholder="+7 (999) 000-0000"
-            {...register('phone', { required: true })}
-          />
-        </div>
-
-        {showFile && (
+        {showCallback && (
           <div className={style.field}>
-            <label className={style.label}>Ссылка на портфолио</label>
+            <label className={style.label}>Номер телефона</label>
             <Input
               className={style.control}
-              placeholder="https://msarchitects.ru/"
-              {...register('resume', { required: true })}
+              inputMode="numeric"
+              onInput={(e) => {
+                const target = e.currentTarget;
+                target.value = target.value.replace(/[^\d+() -]/g, ''); // разрешаем цифры, +, (), пробел, дефис
+              }}
+              placeholder="+7 (999) 000-0000"
+              {...register('phone', { required: true })}
             />
           </div>
+        )}
+
+        {showFile && (
+          <>
+            <div className={style.field}>
+              <label className={style.label}>Email</label>
+              <Input
+                className={style.control}
+                placeholder="info@msarchitects.ru"
+                {...register('email', { required: true })}
+              />
+            </div>
+
+            <div className={style.field}>
+              <label className={style.label}>Ссылка на портфолио</label>
+              <Input
+                className={style.control}
+                placeholder="https://msarchitects.ru/"
+                {...register('resume', { required: true })}
+              />
+            </div>
+          </>
         )}
 
         {showCooperate && (
           <div className={style.field}>
             <label className={style.label}>Сообщение</label>
-            <Textarea
-              placeholder="Коротко опишите запрос"
-              {...register('message')}
-            />
+            <Textarea placeholder="Коротко опишите запрос" {...register('message')} />
           </div>
         )}
       </div>

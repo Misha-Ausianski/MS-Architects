@@ -1,7 +1,7 @@
 import ClientsLogos from '@widgets/ClientsLogos/ClientsLogos';
 import TabbedForm from '@widgets/TabbedForm/TabbedForm';
 import Breadcrumbs from '@widgets/Breadcrumbs/Breadcrumbs';
-import bureauImg from '@shared/assets/bureau.jpg';
+import bureauImg from '@shared/assets/bureau.png';
 import DownloadsList from '@widgets/DownloadsList/DownloadsList';
 import { usePage } from '@entities/page/api/queries';
 import styles from './BureauPage.module.scss';
@@ -97,9 +97,7 @@ export default function BureauPage() {
 
       <section className="section">
         <div className="container">
-          <h3 className={styles.subtitle}>
-            Преимущества
-          </h3>
+          <h3 className={styles.subtitle}>Преимущества</h3>
           <div className={styles.advantages}>
             <div className={styles.firstRow}>
               {firstAdvantagesRow.map((item, index) => (
