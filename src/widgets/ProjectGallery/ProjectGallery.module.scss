@@ -1,17 +1,18 @@
-
-.gallery {
-  width: 100%;
+:global(main), :global(#root), :global(.page) {
   min-width: 0;
-  position: relative;
-  overflow: hidden;     
 }
 
+:global(.swiper) {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  overflow: hidden;
+}
 
-:global(main), :global(#root), :global(.page) { min-width: 0; }
+:global(.swiper-wrapper) {
+  height: auto;
+}
 
-
-:global(.swiper) { width: 100%; height: auto; min-width: 0; overflow: hidden; }
-:global(.swiper-wrapper) { height: auto; }
 :global(.swiper-slide) {
   flex: 0 0 100%;
   min-width: 0;
@@ -19,6 +20,14 @@
   height: auto;
 }
 
+.gallery {
+  margin-bottom: 43px;
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  max-height: calc(100vh - 90px);
+}
 
 .slide {
   display: block;
@@ -29,6 +38,7 @@
   cursor: zoom-in;
   text-align: left;
 }
+
 .img {
   display: block;
   width: 100%;
@@ -42,7 +52,7 @@
   position: absolute !important;
   left: 50% !important;
   bottom: 20px !important;
-  transform: translateX(-50%) !important; 
+  transform: translateX(-50%) !important;
   width: auto !important;
   right: auto !important;
   display: flex !important;
@@ -56,11 +66,12 @@
   width: 60px;
   height: 4px;
   border-radius: 4px;
-  background: rgba(255,255,255,.25);
+  background: rgba(255, 255, 255, .25);
   opacity: .85;
   overflow: hidden;
   transition: width .2s ease, transform .2s ease, opacity .2s ease;
 }
+
 :global(.swiper-pagination-bullet-active).bullet,
 .bullet:global(.swiper-pagination-bullet-active) {
   width: 100px;
@@ -68,7 +79,8 @@
 }
 
 .progress {
-  position: absolute; inset: 0 auto 0 0;
+  position: absolute;
+  inset: 0 auto 0 0;
   width: var(--p, 0%);
   background: #fff;
   border-radius: inherit;
@@ -77,5 +89,8 @@
 
 /* адаптив */
 @media (max-width: 640px) {
-  .bullet { width: 40px; height: 5px; }
+  .bullet {
+    width: 40px;
+    height: 5px;
+  }
 }

@@ -12,4 +12,5 @@ export type Project = {
   excerpt?: string;
   content?: string;
   featured?: boolean;
+  customer?: string;
 };

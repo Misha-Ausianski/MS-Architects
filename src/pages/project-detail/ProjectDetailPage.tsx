@@ -4,37 +4,39 @@ import { useProject } from '@entities/project/api/queries';
 import { ProjectGallery } from '@widgets/ProjectGallery/ProjectGallery';
 import ProjectMeta from '@widgets/ProjectMeta/ProjectMeta';
 import { RelatedProjects } from '@widgets/RelatedProjects/RelatedProjects';
-import s from './ProjectDetail.module.scss';
+import style from './ProjectDetail.module.scss';
 
 export default function ProjectDetailPage() {
   const { slug = '' } = useParams();
-  const { data: p, isLoading } = useProject(slug);
-  if (isLoading || !p) return <div className="skeleton-page" />;
+  const { data: project, isLoading } = useProject(slug);
+  if (isLoading || !project) return <div className="skeleton-page" />;
 
   return (
     <>
       <Breadcrumbs />
-      <ProjectGallery images={p.gallery} />
-      <div className="container">
-        <div className="section">
-          <h1 className={s.title}>{p.title}</h1>
+      <ProjectGallery images={project.gallery} />
+      <div className="section">
+        <div className="container">
+          <div className={style.head}>
+            <h1 className={style.title}>{project.title}</h1>
+          </div>
 
-          <div className={s.row}>
-            <aside className={s.metaCol}>
-              <ProjectMeta project={p} />
+          <div className={style.row}>
+            <aside className={style.projectMeta}>
+              <ProjectMeta project={project} />
             </aside>
-            <article className={s.content}>
-              {p.content ? (
-                <div dangerouslySetInnerHTML={{ __html: p.content }} />
+            <article className={style.content}>
+              {project.content ? (
+                <div dangerouslySetInnerHTML={{ __html: project.content }} />
               ) : (
-                <p>{p.excerpt}</p>
+                <p>{project.excerpt}</p>
               )}
             </article>
           </div>
         </div>
       </div>
 
-      <RelatedProjects serviceSlug={p.serviceSlug} currentSlug={p.slug} limit={3} />
+      <RelatedProjects serviceSlug={project.serviceSlug} currentSlug={project.slug} limit={3} />
     </>
   );
 }

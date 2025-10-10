@@ -1,6 +1,6 @@
 import { useProjects } from '@entities/project/api/queries';
 import { ProjectCard } from '@entities/project/ui/ProjectCard';
-import s from './RelatedProjects.module.scss';
+import style from './RelatedProjects.module.scss';
 
 type Props = {
   serviceSlug: string;
@@ -20,10 +20,10 @@ export function RelatedProjects({ serviceSlug, currentSlug, limit = 3 }: Props) 
   return (
     <section data-bitrix-block="RELATED_PROJECTS">
       <div className="container">
-        <h2>Другие проекты этой категории</h2>
-        <div className={s.grid}>
+        <h2 className={style.title}>Другие проекты этой категории</h2>
+        <div className={style.grid}>
           {items.map(p => (
-            <div key={p.id} className={s.cell}>
+            <div key={p.id} className={style.cell}>
               <ProjectCard project={p} />
             </div>
           ))}

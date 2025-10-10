@@ -4,7 +4,7 @@ import { Autoplay, Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import s from './ProjectGallery.module.scss';
+import style from './ProjectGallery.module.scss';
 import Lightbox from '@features/gallery-lightbox/ui/Lightbox';
 
 export function ProjectGallery({ images }: { images: string[] }) {
@@ -12,7 +12,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
   const [src, setSrc] = useState<string | null>(null);
 
   return (
-    <div className={s.gallery} data-bitrix-block="PROJECT_GALLERY">
+    <div className={style.gallery} data-bitrix-block="PROJECT_GALLERY">
       <Swiper
         modules={[Autoplay, Pagination, A11y]}
         slidesPerView={1}
@@ -30,7 +30,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
         pagination={{
           clickable: true,
           renderBullet: (_i, className) =>
-            `<span class="${className} ${s.bullet}"><i class="${s.progress}"></i></span>`,
+            `<span class="${className} ${style.bullet}"><i class="${style.progress}"></i></span>`,
         }}
         onBeforeInit={(swiper) => {
           // @ts-ignore
@@ -43,24 +43,24 @@ export function ProjectGallery({ images }: { images: string[] }) {
         }}
         onSlideChange={() => {
           // сбросить заливку у всех и начать заново у активной
-          pagRef.current?.querySelectorAll<HTMLElement>(`.${s.bullet}`)
+          pagRef.current?.querySelectorAll<HTMLElement>(`.${style.bullet}`)
             .forEach((b) => b.style.setProperty('--p', '0%'));
         }}
       >
         {images.map((img, i) => (
           <SwiperSlide key={i}>
             <button
-              className={s.slide}
+              className={style.slide}
               onClick={() => setSrc(img)}
               aria-label="Открыть изображение"
             >
-              <img className={s.img} src={img} alt="" loading="lazy" />
+              <img className={style.img} src={img} alt="" loading="lazy" />
             </button>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <div className={s.pagination} ref={pagRef} />
+      <div className={style.pagination} ref={pagRef} />
 
       <Lightbox src={src} onClose={() => setSrc(null)} />
     </div>
