@@ -1,0 +1,1 @@
+import{j as e}from"./index-D6PfprTE.js";function r(){return e.jsxs("div",{className:"container",children:[e.jsx("h1",{children:"Страница не найдена"}),e.jsx("p",{children:"К сожалению, такой страницы нет."})]})}export{r as default};
