@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import type { Swiper as SwiperClass } from 'swiper';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, A11y, Navigation } from 'swiper/modules';
@@ -19,24 +20,67 @@ type Item = {
 
 export default function HeroSlider({ items }: { items: Item[] }) {
   const pagRef = useRef<HTMLDivElement | null>(null);
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  // после (ре)маунта страницы форс-пересчёт размеров
+  const renderBullet = (_i: number, className: string) =>
+    `<span class="${className} ${styles.bullet}" tabindex="0">
+       <i class="${styles.progress}" data-progress></i>
+     </span>`;
+
+  /** Привязываем внешний контейнер и переинициализируем пагинацию */
+  const attachPagination = (s: SwiperClass | null) => {
+    if (!s || !pagRef.current) return;
+
+    // гарантируем объектную форму параметров пагинации
+    if (!s.params.pagination || typeof s.params.pagination === 'boolean') {
+      // @ts-expect-error — Swiper допускает boolean, мы приводим к объекту
+      s.params.pagination = { enabled: true };
+    }
+
+    const p = s.params.pagination as any;
+    p.el = pagRef.current;
+    p.clickable = true;
+    p.renderBullet = renderBullet;
+
+    // ВАЖНО: дергаем методы только когда модуль уже инициализирован
+    if (!s.pagination) return;
+
+    s.pagination.destroy?.();
+    s.pagination.init?.();
+    s.pagination.render?.();
+    s.pagination.update?.();
+  };
+
+  // Пересборка после смены роутов/данных
   useEffect(() => {
-    const s = swiperRef.current?.swiper ?? swiperRef.current;
+    const s = swiperRef.current;
     if (!s) return;
-    const id = setTimeout(() => s.update(), 0);
+
+    attachPagination(s);
+
+    const id = setTimeout(() => {
+      s.update();
+      s.pagination?.update?.();
+    }, 0);
+
     return () => clearTimeout(id);
-  }, [pathname]);
+  }, [pathname, items.length]);
 
   return (
     <section className={styles.hero} data-bitrix-block="HERO_SLIDER">
       <Swiper
-        key={pathname} /* ремонт при возврате с другой страницы */
-        ref={swiperRef}
+        key={pathname}
         modules={[Autoplay, Pagination, A11y, Navigation]}
+        // В onSwiper только сохраняем ссылку — НЕ вызываем attachPagination здесь!
+        onSwiper={(s) => {
+          swiperRef.current = s;
+        }}
+        // Гарантированная точка, где уже есть s.pagination
+        onInit={(s) => {
+          attachPagination(s);
+        }}
         slidesPerView={1}
         spaceBetween={0}
         loop={items.length > 1}
@@ -49,28 +93,27 @@ export default function HeroSlider({ items }: { items: Item[] }) {
         autoplay={{ delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         simulateTouch
         grabCursor
-        pagination={{
-          clickable: true,
-          renderBullet: (_i, className) =>
-            `<span class="${className} ${styles.bullet}" tabindex="0" aria-current="false">
-               <i class="${styles.progress}" data-progress></i>
-             </span>`,
+        // Даём Swiper'у объект, чтобы модуль Pagination точно включился
+        pagination={{ enabled: true, clickable: true, renderBullet }}
+        onAfterInit={(s) => {
+          s.update();
+          s.pagination?.update?.();
         }}
-        onBeforeInit={(swiper) => {
-          // @ts-ignore
-          swiper.params.pagination.el = pagRef.current!;
+        onResize={(s) => {
+          s.update();
+          s.pagination?.update?.();
         }}
-        onAfterInit={(s) => s.update()}
-        onResize={(s) => s.update()}
-        onImagesReady={(s) => s.update()}
+        onImagesReady={(s) => {
+          s.update();
+          s.pagination?.update?.();
+        }}
         onAutoplayTimeLeft={(_s, _time, progress) => {
-          // progress: 1 → 0; нам нужно 0% → 100%
-          const activeBullet = pagRef.current?.querySelector('.swiper-pagination-bullet-active');
-          const bar = activeBullet?.querySelector<HTMLElement>('[data-progress]');
-          if (bar) bar.style.setProperty('--p', `${(1 - progress) * 100}%`);
+          const bar = pagRef.current?.querySelector<HTMLElement>(
+            '.swiper-pagination-bullet-active [data-progress]'
+          );
+          if (bar) bar.style.setProperty('--p', `${((1 - progress) * 100).toFixed(0)}%`);
         }}
         onSlideChange={() => {
-          // сбросить заливку у всех <i data-progress>
           pagRef.current
             ?.querySelectorAll<HTMLElement>('[data-progress]')
             .forEach((b) => b.style.setProperty('--p', '0%'));
@@ -91,17 +134,11 @@ export default function HeroSlider({ items }: { items: Item[] }) {
               }}
             >
               <img className={styles.bg} src={it.cover} alt={it.title} />
-
               <div className={styles.inner}>
                 {it.category && <span className={styles.tag}>{it.category}</span>}
                 <h1 className={styles.title}>{it.title}</h1>
                 {it.excerpt && <p className={styles.text}>{it.excerpt}</p>}
-
-                <Link
-                  to="/projects"
-                  onClick={(e) => e.stopPropagation()}
-                  className={styles.cta}
-                >
+                <Link to="/projects" onClick={(e) => e.stopPropagation()} className={styles.cta}>
                   <Button className={styles.button}>
                     Смотреть все
                     <svg width="8" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +152,9 @@ export default function HeroSlider({ items }: { items: Item[] }) {
         ))}
       </Swiper>
 
-      <div className={styles.pagination} ref={pagRef} />
+      {/* внешний контейнер лучше оставить с классом swiper-pagination,
+          чтобы применились дефолтные стили плагина */}
+      <div className={`${styles.pagination} swiper-pagination`} ref={pagRef} />
     </section>
   );
 }
