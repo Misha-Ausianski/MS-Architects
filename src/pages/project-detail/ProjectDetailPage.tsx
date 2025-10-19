@@ -19,6 +19,9 @@ export default function ProjectDetailPage() {
         <div className="container">
           <div className={style.head}>
             <h1 className={style.title}>{project.title}</h1>
+            <div className={style.category}>
+              {project.category}
+            </div>
           </div>
 
           <div className={style.row}>

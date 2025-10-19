@@ -1,11 +1,10 @@
-// app/widgets/Breadcrumbs/Breadcrumbs.tsx
-
 import React, { Fragment } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
 
 export default function Breadcrumbs() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const parts = pathname.split('/').filter(Boolean);
 
   const crumbs = [
@@ -16,8 +15,22 @@ export default function Breadcrumbs() {
     })),
   ];
 
+  const isProjectDetail = pathname.startsWith('/projects/') && parts.length > 1;
+
   return (
     <nav className={styles.bc} aria-label="breadcrumb">
+      {isProjectDetail && (
+        <button
+          type="button"
+          className={styles.backBtn}
+          onClick={() => navigate('/projects')}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M6.25 10L12.5 16.25L13.375 15.375L8 10L13.375 4.625L12.5 3.75L6.25 10Z" fill="#222222"/>
+          </svg>
+          Назад к проектам
+        </button>
+      )}
       {crumbs.map((c, i) => (
         <Fragment key={c.to}>
           {i === crumbs.length - 1 ? (

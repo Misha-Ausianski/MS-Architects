@@ -3,6 +3,8 @@ import { useService, useServices } from '@entities/service/api/queries';
 import { RelatedProjects } from '@widgets/RelatedProjects/RelatedProjects';
 import HeroServices from '@widgets/Hero/Hero';
 import style from './ServiceDetail.module.scss';
+import ClientsLogos from '@widgets/ClientsLogos/ClientsLogos';
+import DownloadsList from '@widgets/DownloadsList/DownloadsList';
 
 const BENEFITS: { title: string; text: string }[] = [
   {
@@ -46,37 +48,51 @@ export default function ServiceDetailPage() {
     <>
       <HeroServices image={heroImage} title={svc.title} items={items} activeSlug={svc.slug} />
 
-      <div className={style.inner}>
-        {svc.description && (
-          <h2 className={style.title} dangerouslySetInnerHTML={{ __html: svc.description }} />
-        )}
+      <div className="section">
+        <div className="container">
+          <div className={style.inner}>
+            {svc.description && (
+              <h2 className={style.title} dangerouslySetInnerHTML={{ __html: svc.description }} />
+            )}
 
-        <div className={style.text}>
-          <div className={style.col}>
-            {svc.intro.left.map((p, i) => (
-              <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-            ))}
+            <div className={style.text}>
+              <div className={style.col}>
+                {svc.intro.left.map((p, i) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+                ))}
+              </div>
+              <div className={style.col}>
+                {svc.intro.right.map((p, i) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+                ))}
+              </div>
+            </div>
+            <div className={style.benefits}>
+              <h3 className={style.benefitsTitle}>
+                Почему многие крупные компании доверили проектирование зданий нам:
+              </h3>
+              <ul className={style.benefitsGrid}>
+                {BENEFITS.map((b, i) => (
+                  <li key={i} className={style.card}>
+                    <div className={style.benefitHead}>{b.title}</div>
+                    <div className={style.benefitText}>{b.text}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {isLoading ? null : svc?.downloads?.length ? (
+              <div className={style.downloadsWrap}>
+                <DownloadsList
+                  items={svc.downloads as Array<{ title: string; url: string; meta?: string }>}
+                />
+              </div>
+            ) : null}
           </div>
-          <div className={style.col}>
-            {svc.intro.right.map((p, i) => (
-              <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-            ))}
-          </div>
-        </div>
-        <div className={style.benefits}>
-          <h3 className={style.benefitsTitle}>
-            Почему многие крупные компании доверили проектирование зданий нам:
-          </h3>
-          <ul className={style.benefitsGrid}>
-            {BENEFITS.map((b, i) => (
-              <li key={i} className={style.card}>
-                <div className={style.benefitHead}>{b.title}</div>
-                <div className={style.benefitText}>{b.text}</div>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
+
+      <ClientsLogos />
 
       <RelatedProjects serviceSlug={svc.slug} currentSlug={svc.slug} limit={3} />
     </>
