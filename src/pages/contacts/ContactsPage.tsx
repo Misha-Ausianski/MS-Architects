@@ -7,8 +7,7 @@ export default function ContactsPage() {
     <>
       <div className={styles.container}>
         <Breadcrumbs />
-        <h1 className={styles.h1}>Контакты</h1>
-
+        <h1 className={styles.title}>Контакты</h1>
         <div className={styles.row}>
           <div className={styles.left}>
             <p className={styles.phone}>
@@ -19,9 +18,7 @@ export default function ContactsPage() {
             <p className={styles.email}>
               <a href="mailto:info@msarchitects.ru">info@msarchitects.ru</a>
             </p>
-            <p className={styles.address}>
-              г. Москва, ул. Селезнёвская, д. 19/2
-            </p>
+            <p className={styles.address}>г. Москва, ул. Селезнёвская, д. 19/2</p>
           </div>
 
           <div className={styles.right}>

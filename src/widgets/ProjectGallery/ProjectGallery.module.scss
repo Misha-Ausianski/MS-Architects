@@ -5,6 +5,7 @@
 :global(.swiper) {
   width: 100%;
   height: auto;
+  //min-height: calc(100vh - 90px) !important;
   min-width: 0;
   overflow: hidden;
 }
@@ -14,10 +15,9 @@
 }
 
 :global(.swiper-slide) {
-  flex: 0 0 100%;
   min-width: 0;
-  width: 100%;
-  height: auto;
+  width: auto !important;
+  //min-height: calc(100vh - 90px) !important;
 }
 
 .gallery {

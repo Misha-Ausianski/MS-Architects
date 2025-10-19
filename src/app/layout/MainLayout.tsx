@@ -2,6 +2,7 @@ import { NavLink, Outlet, useMatches } from 'react-router-dom';
 import Sidebar from '@widgets/Sidebar/Sidebar';
 import Footer from '@widgets/Footer/Footer';
 import Offcanvas from '@features/offcanvas-menu/ui/Offcanvas';
+import ScrollToTop from './ScrollToTop';
 import { useOffcanvas } from '@features/offcanvas-menu/model/store';
 import Logo from '@shared/assets/headerLogo.svg?react';
 import BurgerIcon from '@shared/assets/Burger.svg?react';
@@ -16,6 +17,7 @@ export default function MainLayout() {
 
   return (
     <div className={styles.layout}>
+      <ScrollToTop />
       <div className={styles.container}>
         <Sidebar />
 

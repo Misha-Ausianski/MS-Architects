@@ -9,12 +9,18 @@
 
 .container {
   width: 100%;
-  max-width: 1920px;
+  max-width: 2560px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
   align-items: stretch;
   min-height: 100dvh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main {

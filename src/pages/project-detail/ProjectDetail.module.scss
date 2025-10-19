@@ -11,6 +11,7 @@
 }
 
 .row {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -19,6 +20,9 @@
 }
 
 .projectMeta {
+  position: sticky;
+  left: 0;
+  top: 10px;
   flex: 0 0 429px;
   width: 429px;
   min-width: 0;
@@ -29,7 +33,7 @@
   min-width: 0;
 }
 
-.content div {
+.content div div {
   margin-bottom: 28px;
 }
 

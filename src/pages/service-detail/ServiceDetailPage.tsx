@@ -63,7 +63,6 @@ export default function ServiceDetailPage() {
             ))}
           </div>
         </div>
-
         <div className={style.benefits}>
           <h3 className={style.benefitsTitle}>
             Почему многие крупные компании доверили проектирование зданий нам:

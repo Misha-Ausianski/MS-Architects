@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 *, *::before, *::after {
   box-sizing: border-box
 }

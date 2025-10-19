@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, A11y } from 'swiper/modules';
+import { Autoplay, Pagination, A11y, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 import Button from '@shared/ui/Button/Button';
 import styles from './HeroSlider.module.scss';
@@ -23,7 +24,7 @@ export default function HeroSlider({ items }: { items: Item[] }) {
   return (
     <section className={styles.hero} data-bitrix-block="HERO_SLIDER">
       <Swiper
-        modules={[Autoplay, Pagination, A11y]}
+        modules={[Autoplay, Pagination, A11y, Navigation]}
         slidesPerView={1}
         spaceBetween={0}
         loop={items.length > 1}
