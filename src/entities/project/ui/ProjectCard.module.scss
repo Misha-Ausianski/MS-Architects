@@ -121,3 +121,10 @@
     transition: none;
   }
 }
+
+
+@media (max-width: 768px) {
+  .cardMini {
+    max-height: 280px;
+  }
+}

@@ -2,12 +2,18 @@ import { Link } from 'react-router-dom';
 import ArrowIcon from '@shared/assets/arrow_right.svg?react';
 import type { Project } from '@entities/project/model/types';
 import styles from './ProjectCard.module.scss';
+import { JSX } from 'react';
 
-export function ProjectCard({ project }: { project: Project }) {
-  const img = (project as any)?.cover
+type Props = { project: Project; mini?: boolean };
+export function ProjectCard({ project, mini }: Props): JSX.Element {
+  const img = (project as any)?.cover;
 
   return (
-    <Link to={`/projects/${project.slug}`} className={styles.card} aria-label={project.title}>
+    <Link
+      to={`/projects/${project.slug}`}
+      className={`${styles.card} ${mini ? styles.cardMini : ''}`}
+      aria-label={project.title}
+    >
       <div className={styles.media}>
         <img src={img} alt={project.title} loading="lazy" />
       </div>

@@ -23,7 +23,7 @@ export function RelatedProjects({ serviceSlug, currentSlug, limit = 3 }: Props) 
       <div className={style.grid}>
         {items.map((p) => (
           <div key={p.id} className={style.cell}>
-            <ProjectCard project={p} />
+            <ProjectCard project={p} mini={true} />
           </div>
         ))}
       </div>

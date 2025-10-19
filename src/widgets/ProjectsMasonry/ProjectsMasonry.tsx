@@ -20,7 +20,7 @@ export function ProjectsMasonry({ items }: Props) {
         const sizeCls = styles[`size-${size}`] || '';
         return (
           <div className={`${styles.card} ${sizeCls}`} key={p.id}>
-            <ProjectCard project={p} />
+            <ProjectCard project={p} mini={false}/>
           </div>
         );
       })}

@@ -23,7 +23,6 @@
   max-width: 671px;
 }
 
-/* как было ранее */
 .left p + p {
   margin-top: 21px;
 }
@@ -63,11 +62,25 @@
   color: #555555;
 }
 
-/* ====== MOBILE ≤ 768px ====== */
 @media (max-width: 768px) {
   .row {
-    flex-direction: column; /* ⬅ требование */
-    padding: 0 16px 80px 16px; /* компактнее отступы */
+    flex-direction: column;
+    padding: 0 16px 80px 16px;
+  }
+
+  .title {
+    margin-top: 28px;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.4px;
+  }
+
+
+  .left p + p {
+    margin-top: 12px;
   }
 
   .left,
@@ -85,7 +98,7 @@
     font-size: 20px;
   }
 
-  /* опционально – слегка уменьшить кегль, если ломается в две строки */
-  /* .phone a, .email a { font-size: 24px; } */
-  /* .address { font-size: 18px; } */
+  .row {
+    gap: 38px;
+  }
 }
