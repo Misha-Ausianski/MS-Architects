@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, A11y, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -19,11 +19,23 @@ type Item = {
 
 export default function HeroSlider({ items }: { items: Item[] }) {
   const pagRef = useRef<HTMLDivElement | null>(null);
+  const swiperRef = useRef<any>(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // после (ре)маунта страницы форс-пересчёт размеров
+  useEffect(() => {
+    const s = swiperRef.current?.swiper ?? swiperRef.current;
+    if (!s) return;
+    const id = setTimeout(() => s.update(), 0);
+    return () => clearTimeout(id);
+  }, [pathname]);
 
   return (
     <section className={styles.hero} data-bitrix-block="HERO_SLIDER">
       <Swiper
+        key={pathname} /* ремонт при возврате с другой страницы */
+        ref={swiperRef}
         modules={[Autoplay, Pagination, A11y, Navigation]}
         slidesPerView={1}
         spaceBetween={0}
@@ -32,26 +44,35 @@ export default function HeroSlider({ items }: { items: Item[] }) {
         watchOverflow
         observer
         observeParents
-        resizeObserver
+        observeSlideChildren
+        updateOnWindowResize
         autoplay={{ delay: 10000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         simulateTouch
         grabCursor
         pagination={{
           clickable: true,
           renderBullet: (_i, className) =>
-            `<span class="${className} ${styles.bullet}"><i class="${styles.progress}"></i></span>`,
+            `<span class="${className} ${styles.bullet}" tabindex="0" aria-current="false">
+               <i class="${styles.progress}" data-progress></i>
+             </span>`,
         }}
         onBeforeInit={(swiper) => {
           // @ts-ignore
           swiper.params.pagination.el = pagRef.current!;
         }}
+        onAfterInit={(s) => s.update()}
+        onResize={(s) => s.update()}
+        onImagesReady={(s) => s.update()}
         onAutoplayTimeLeft={(_s, _time, progress) => {
-          // progress идёт от 1 → 0, нам нужно 0% → 100%
-          const active = pagRef.current?.querySelector<HTMLElement>('.swiper-pagination-bullet-active');
-          if (active) active.style.setProperty('--p', `${Math.round((1 - progress) * 100)}%`);
+          // progress: 1 → 0; нам нужно 0% → 100%
+          const activeBullet = pagRef.current?.querySelector('.swiper-pagination-bullet-active');
+          const bar = activeBullet?.querySelector<HTMLElement>('[data-progress]');
+          if (bar) bar.style.setProperty('--p', `${(1 - progress) * 100}%`);
         }}
         onSlideChange={() => {
-          pagRef.current?.querySelectorAll<HTMLElement>(`.${styles.bullet}`)
+          // сбросить заливку у всех <i data-progress>
+          pagRef.current
+            ?.querySelectorAll<HTMLElement>('[data-progress]')
             .forEach((b) => b.style.setProperty('--p', '0%'));
         }}
       >
@@ -78,8 +99,8 @@ export default function HeroSlider({ items }: { items: Item[] }) {
 
                 <Link
                   to="/projects"
-                  onClick={(e) => e.stopPropagation()} // оставляем, чтобы не срабатывал клик по слайду
-                  className={styles.cta}              // класс не обязателен, но удобно стилизовать
+                  onClick={(e) => e.stopPropagation()}
+                  className={styles.cta}
                 >
                   <Button className={styles.button}>
                     Смотреть все
