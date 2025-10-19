@@ -146,15 +146,46 @@
   transition: width .1s linear;
 }
 
-/* адаптив */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .inner {
-    padding: 24px;
-    max-width: 90vw;
+    padding: 16px;
+    max-width: 100%;
     gap: 16px;
   }
   .bullet {
     width: 40px;
     height: 5px;
+  }
+  .hero {
+    height: calc(100vh - 72px);
+  }
+  .tag {
+    padding: 6px 8px;
+    color: #222;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.14px;
+  }
+  .title {
+    color: #FFF;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 106%;
+    letter-spacing: -0.4px;
+  }
+  .text {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 149%;
+    letter-spacing: -0.14px;
+  }
+  .button {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.14px;
   }
 }

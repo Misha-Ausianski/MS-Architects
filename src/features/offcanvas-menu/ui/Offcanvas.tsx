@@ -17,7 +17,9 @@ export default function Offcanvas() {
 
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+    };
     const html = document.documentElement;
     const prevOverflow = html.style.overflow;
     html.style.overflow = 'hidden';
@@ -27,6 +29,9 @@ export default function Offcanvas() {
       html.style.overflow = prevOverflow;
     };
   }, [isOpen, close]);
+
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    [styles.link, isActive ? styles.active : ''].filter(Boolean).join(' ');
 
   return (
     <div
@@ -40,10 +45,18 @@ export default function Offcanvas() {
     >
       <div className={styles.content}>
         <nav className={styles.nav} onClick={close} aria-label="Навигация по сайту">
-          <NavLink to="/bureau">Бюро</NavLink>
-          <NavLink to="/projects">Проекты</NavLink>
-          <NavLink to="/services">Услуги</NavLink>
-          <NavLink to="/contacts">Контакты</NavLink>
+          <NavLink to="/bureau" className={linkClass} end>
+            Бюро
+          </NavLink>
+          <NavLink to="/projects" className={linkClass}>
+            Проекты
+          </NavLink>
+          <NavLink to="/services" className={linkClass} end>
+            Услуги
+          </NavLink>
+          <NavLink to="/contacts" className={linkClass} end>
+            Контакты
+          </NavLink>
         </nav>
 
         <div className={styles.socials}>

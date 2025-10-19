@@ -20,7 +20,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .main {
@@ -107,6 +107,10 @@
 
   .header {
     display: flex;
-    padding: 10px 12px;
+    padding: 10px 8px;
+  }
+
+  .content {
+    min-height: unset;
   }
 }
