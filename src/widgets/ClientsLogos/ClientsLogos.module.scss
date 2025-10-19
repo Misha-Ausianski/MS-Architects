@@ -9,8 +9,8 @@
 }
 
 .container {
-  padding: 0 48px 0 0;
   margin-bottom: 60px;
+  padding-right: 48px;
 }
 
 .wrap {
@@ -76,9 +76,18 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    margin-bottom: 28px;
+    color: #111;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.28px;
+  }
   .container {
-    padding: 0;
-    margin-bottom: 36px;
+    padding: 40px 16px;
+    margin-bottom: 60px;
+
   }
   .wrap {
     gap: 4px;
@@ -88,6 +97,14 @@
   }
   .mobileOnly {
     display: block;
+  }
+
+  .item {
+    min-height: 58px;
+
+    img {
+
+    }
   }
 }
 

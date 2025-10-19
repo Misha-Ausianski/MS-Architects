@@ -9,7 +9,7 @@ export default function ClientsLogos({ logos }: Props) {
 
   return (
     <section className="section" data-bitrix-block="CLIENTS">
-      <div className="container">
+      <div className={styles.container}>
         <h2 className={styles.title}>
           Наши клиенты
         </h2>
@@ -25,7 +25,7 @@ export default function ClientsLogos({ logos }: Props) {
                 style={
                   {
                     // разная скорость по рядам
-                    ['--duration' as any]: r === 0 ? '28s' : r === 1 ? '32s' : r === 2 ? '26s' : '30s',
+                    ['--duration' as any]: r === 0 ? '100s' : r === 1 ? '100s' : r === 2 ? '100s' : '100s',
                   } as React.CSSProperties
                 }
               >

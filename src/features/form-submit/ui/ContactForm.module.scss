@@ -85,3 +85,17 @@
   color: green;
   margin-top: 8px;
 }
+
+@media (max-width: 768px) {
+  .field {
+    gap: 8px;
+  }
+
+  .input {
+    min-height: 52px;
+  }
+
+  .consent {
+    margin: 20px 0;
+  }
+}

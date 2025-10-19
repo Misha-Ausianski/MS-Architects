@@ -129,17 +129,56 @@
 @media (max-width: 768px) {
   .introGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
+
   .formWrap {
     margin-left: 0;
     max-width: 100%;
   }
+
   .formRow {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 0px;
   }
-  .h2 {
-    margin: 0;
+
+  .col {
+    gap: 12px;
+  }
+
+  .hero {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    margin-bottom: 24px;
+    color: #111;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.4px;
+  }
+
+  .firstRow, .secondRow {
+    flex-direction: column;
+    gap: 12px;
+
+    .card {
+      min-height: 142px;
+    }
+  }
+
+  .subtitle {
+    margin-bottom: 28px;
+    color: #222;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.28px;
+  }
+
+  .card {
+   max-width: 100%;
   }
 }
