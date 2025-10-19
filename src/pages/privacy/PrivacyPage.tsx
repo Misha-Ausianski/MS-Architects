@@ -8,14 +8,13 @@ export default function PrivacyPage() {
 
   return (
     <>
+      <Breadcrumbs />
       <div className="container">
-        <Breadcrumbs />
-
         {isLoading ? (
           <div className="skeleton-page" />
         ) : (
           <article className={styles.article}>
-            <h1 className={styles.h1}>
+            <h1 className={styles.title}>
               {data?.title ?? 'Политика в отношении обработки персональных данных'}
             </h1>
 
