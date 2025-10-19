@@ -20,11 +20,11 @@ export default function HeroServices({
       <img className={styles.bg} src={image} alt={title} />
       <div className={styles.shade} aria-hidden="true" />
 
-      <div className={styles.crumbs}>
-        <Breadcrumbs />
-      </div>
-
       <div className={styles.inner}>
+        <div className={styles.crumbs}>
+          <Breadcrumbs />
+        </div>
+
         <h1 className={styles.title}>{title}</h1>
 
         <ul className={styles.tags} aria-label="Список услуг">
