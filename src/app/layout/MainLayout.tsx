@@ -10,7 +10,7 @@ import CloseIcon from '@shared/assets/Close.svg?react';
 import styles from './MainLayout.module.scss';
 
 export default function MainLayout() {
-  const { isOpen, toggle } = useOffcanvas();
+  const { isOpen, toggle, close } = useOffcanvas();
   const matches = useMatches();
 
   const hideFooter = matches.some((m) => m.handle?.hideFooter);
@@ -23,8 +23,15 @@ export default function MainLayout() {
 
         <main className={styles.main}>
           <div className={styles.header} role="banner">
-            <NavLink to="/" aria-label="Домой" className={styles.headerLogoWrap}>
-              <Logo className={styles.headerLogo}/>
+            <NavLink
+              to="/"
+              aria-label="Домой"
+              onClick={() => {
+                if (isOpen) close();
+              }}
+              className={styles.headerLogoWrap}
+            >
+              <Logo className={styles.headerLogo} />
             </NavLink>
 
             <button
